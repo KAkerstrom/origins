@@ -1,0 +1,8 @@
+﻿-Graphics scaling
+-Grid-based movement
+-Dorf pathfinding
+-Tile map as image
+-Changing tiles
+-Dynamic water
+-Tilesheet & text file for graphics
+-Simple AI for dorfs (hunger & thirst) - FSM

@@ -1,0 +1,14 @@
+﻿Created basic framework of classes etc.
+Drew a 2D array of Tiles to the screen, using a single tilesheet and drawing a section of it for each tile
+Added autogenerating edge-detection of Tile graphics, using a text file for the parameters
+Added the Player, with basic keyboard movement -> Referenced PresentationCore.dll to get to the System.Windows.Input.Keyboard namespace
+Added a viewport that follows the Player, using Graphics.TranslateTransform (and Graphics.Clip, which later turned out to be unnecessary)
+Made drawing the screen more efficient by changing how Tiles are drawn -> It now draws to an image once and uses that rather than drawing each tile every cycle
+Revamped the viewport so that the scale is only applied once on the final Graphics object, rather than on every sprite being drawn
+Added grid-based movement, rather than the simple free-movement before
+Added the ability to change tiles in-game, and refactored the Tile class to better accomodate changes to the map
+Added the "Dorfs" & gave them basic pathfinding AI
+Added "Food" - flowers with dynamically generated colors. The RGB values affect which stats it helps.
+Made Food spread, and each "child" flower's colors are a slight mutation of its parent's colors
+Added dynamic flowing water - Water flows into dirt tiles
+To accomodate the above, I've added a much more efficient method for changing 1 tile at a time, greatly reducing lag when changing tiles

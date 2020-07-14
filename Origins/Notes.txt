@@ -1,0 +1,99 @@
+﻿LocalView object idea:
+ - Create a 2D array of ints that represent the "weight" of that decision
+ - Lower weights for diagonals, water, predators, etc.
+ - Water is decreased less the more thirsty the dorf is, and other such shenanigans
+
+
+
+ ///////////////////////////////
+ Things I wish I could've added:
+	 I ended up taking out Dorf evolution, which was suposed to be the major focus of the game, so I would like to add that again
+	 Hit on keydown, not keyup
+	 Have variables for when a dorf needs to worry about a stat (thirst = 70, for example)
+	 Give dorfs MaxHealth etc stats
+	 Fix predator animation (hurt/attacking while moving)
+	 Better Tutorial
+	 Stamina & Sleeping
+	 Better Saving/loading
+	 Different-looking Dorfs - even just a recolor.
+	 More interesting Dorf stats, to make Dorf breeding more important.
+	 Items - Both permanent items to give stat boosts, and items that a Dorf can hold for a temporary boost. Also various other items. (would actually be pretty simple to add)
+	 Better pathfinding - Something like A* perhaps? Something better than "move here, or if you can't, just move randomly".
+	 Better Dorf AI - Things like personality, better reactions to predators / players, more nuanced than "if hunger is >X, eat".
+	 Multiplayer
+	 Better tutorial - Perhaps during gameplay
+	 Controller support
+	 More "objects" - walls, doors, machines, etc
+	 There are several stats and such in the code that are unused, such as Dorf strength
+	 Make the LocalView class a bit more efficient for scanning Tiles
+	 Change Player code to an FSM
+	 Put everything in one list & use LINQ to get sub-lists
+	 Organize code better & refactor some things
+
+	 
+
+ //////////////////
+ Tutorial Planning:
+
+-Controls:
+Arrow Keys - Change Direction / Move
+Z - Create land
+X - Dig
+C - Hit
+S - Grab
+I - Inspect Dorf
+P - Pause Game
+Shift - Focus Reticle on Player
+Ctrl - View Dorf stats
+Mouse Wheel - Zoom In / Out
+ 
+-Player:
+	The Player is the little dude in the center of the screen.
+	He cannot die or be hurt, but instead acts as a sort of cursor or conduit for you to interact with the world.
+	There is a yellow square by the player. This is your "Reticle". Your actions (hitting, grabbing, etc) will be performed on whatever is on the Reticle.
+	You can move your Player / reticle with the arrow keys. A quick tap will move the Reticle without moving the Player.
+
+ -Dorfs:
+	The Dorfs are the little blue guys walking around.
+	The Dorfs are the main focus of the game. In theory, your goal is to take care of them and let them prosper.
+	Dorfs will occassionally lay eggs, which will create a new Dorf with stats similar to its parent.
+	Dorfs have four important stats, which you can check at a glance by holding Ctrl.
+	(Holding Ctrl will also display the Dorf's name and current action)
+
+	Health (red):
+	 The Dorf's health. If this reaches 0, the Dorf will die.
+	 Health can be reduced by things such as being hit, or being deprived of food or water too long.
+	 Health can be gained somewhat by eating red flowers.
+	Stamina (green):
+	 The "energy" the Dorf has. If this falls too low, the Dorf will fall asleep.
+	 Stamina is reduced by actions, such as walking or swimming.
+	 Stamina can be gained somewhat by eating green flowers.
+	Hunger (orange):
+	 The hunger of the Dorf. Unlike Health and Stamina, this should be kept low.
+	 Hunger is increased at a slow rate over time.
+	 Hunger can be reduced by eating any flower, though blue flowers are best.
+	Thirst (blue):
+	 The thirst of the Dorf. Like Hunger, this should be kept low for a healthy, happy Dorf.
+	 Thirst is increased over time.
+	 Thirst can be reduced by swimming, so ensure your Dorfs have ample access to water.
+
+ -Predators:
+	Predators are the bad guys. They will harrass and kill your Dorfs on-sight.
+	If you see a Predator, your best option is to smack 'em around before they do any damage.
+
+ -Trees / Stumps:
+	Trees can be destroyed by hitting them, which will yield a Stump
+	Stumps can be grabbed and moved, and will act as a solid wall.
+
+ -Dirt:
+	The player can dig with X, turning Grass into Dirt.
+	The Player, and other characters, will move faster on Dirt than on Grass.
+	If Dirt is created next to Water, the Water will flow to fill in the Dirt.
+
+ -Flowers
+	Flowers are the colorful things that Dorfs eat.
+	As described under "Dorfs", different coloured flowers will have different effects:
+	Red: Health
+	Green: Stamina
+	Blue: (extra) Hunger
+	Grabbing a flower, and placing it on another flower, will combine the colours, allowing for simple flower "breeding".
